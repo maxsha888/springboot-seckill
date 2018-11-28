@@ -4,16 +4,16 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo
 http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <!-- Ó¦ÓÃÅäÖÃ£¬²»ÒªÓëÌá¹©·½ÏàÍ¬ -->
-    <dubbo:application name="springboot-dubbo-provider"/>
+    <!-- åº”ç”¨é…ç½®ï¼Œä¸è¦ä¸Žæä¾›æ–¹ç›¸åŒ -->
+    <dubbo:application name="provider"/>
 
-    <!-- ×¢²áÖÐÐÄÅäÖÃ£¬Ê¹ÓÃzookeeper×¢²áÖÐÐÄ±©Â¶·þÎñµØÖ· -->
+    <!-- æ³¨å†Œä¸­å¿ƒé…ç½®ï¼Œä½¿ç”¨zookeeperæ³¨å†Œä¸­å¿ƒæš´éœ²æœåŠ¡åœ°å€ -->
     <dubbo:registry address="zookeeper://127.0.0.1:2181" timeout="60000" />
 
-    <!--¹Ø±Õ·þÎñÏû·Ñ·½ËùÓÐ·þÎñµÄÆô¶¯¼ì²é¡£dubboÈ±Ê¡»áÔÚÆô¶¯Ê±¼ì²éÒÀÀµµÄ·þÎñÊÇ·ñ¿ÉÓÃ£¬²»¿ÉÓÃÊ±»áÅ×³öÒì³££¬×èÖ¹Spring³õÊ¼»¯Íê³É¡£-->
+    <!--å…³é—­æœåŠ¡æ¶ˆè´¹æ–¹æ‰€æœ‰æœåŠ¡çš„å¯åŠ¨æ£€æŸ¥ã€‚dubboç¼ºçœä¼šåœ¨å¯åŠ¨æ—¶æ£€æŸ¥ä¾èµ–çš„æœåŠ¡æ˜¯å¦å¯ç”¨ï¼Œä¸å¯ç”¨æ—¶ä¼šæŠ›å‡ºå¼‚å¸¸ï¼Œé˜»æ­¢Springåˆå§‹åŒ–å®Œæˆã€‚-->
     <dubbo:consumer check="false" />
 
-    <!-- Ê¹ÓÃ×¢½â·½Ê½±©Â¶½Ó¿Ú£¬»á×Ô¶¯É¨ÃèpackageÏÂËùÓÐ°üÖÐdubboÏà¹ØµÄ×¢½â£¬ÕâÑù¾Í²»ÓÃÔÚxmlÖÐÔÙÕë¶ÔÃ¿¸ö·þÎñ½Ó¿ÚÅäÖÃdubbo:service interface-->
-    <dubbo:annotation package="com.practice.springboot.dubbo.provider"/>
-    <!--<dubbo:service interface="com.practice.springboot.dubbo.provider.SayHelloImpl" ref="SayHelloImpl"/>-->
+    <!-- ä½¿ç”¨æ³¨è§£æ–¹å¼æš´éœ²æŽ¥å£ï¼Œä¼šè‡ªåŠ¨æ‰«æpackageä¸‹æ‰€æœ‰åŒ…ä¸­dubboç›¸å…³çš„æ³¨è§£ï¼Œè¿™æ ·å°±ä¸ç”¨åœ¨xmlä¸­å†é’ˆå¯¹æ¯ä¸ªæœåŠ¡æŽ¥å£é…ç½®dubbo:service interface-->
+    <dubbo:annotation package="com.jesper.seckill.service"/>
+   <!--  <dubbo:service interface="com.jesper.seckill.dubbo_api.DemoService" ref="demoServiceImpl"/> -->
 </beans>

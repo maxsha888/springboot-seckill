@@ -1,19 +1,18 @@
-?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo
 http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-        <!-- Ó¦ÓÃÅäÖÃ£¬²»ÒªÓëÌá¹©·½ÏàÍ¬ -->
+        <!-- åº”ç”¨é…ç½®ï¼Œä¸è¦ä¸Žæä¾›æ–¹ç›¸åŒ -->
         <dubbo:application name="springboot-dubbo-consumer"/>
 
-        <!-- ×¢²áÖÐÐÄÅäÖÃ£¬Ê¹ÓÃzookeeper×¢²áÖÐÐÄ±©Â¶·þÎñµØÖ· -->
+        <!-- æ³¨å†Œä¸­å¿ƒé…ç½®ï¼Œä½¿ç”¨zookeeperæ³¨å†Œä¸­å¿ƒæš´éœ²æœåŠ¡åœ°å€ -->
         <dubbo:registry address="zookeeper://127.0.0.1:2181" timeout="60000" />
 
-        <!-- Ê¹ÓÃ×¢½â·½Ê½´´½¨Ô¶³Ì·þÎñ´úÀí-->
+        <!-- ä½¿ç”¨æ³¨è§£æ–¹å¼åˆ›å»ºè¿œç¨‹æœåŠ¡ä»£ç†-->
         <dubbo:annotation package="com.practice.springboot.dubbo.consumer"/>
-        <!--ÉùÃ÷·þÎñÒýÓÃ£¬Óë·þÎñÉùÃ÷½Ó¿ÚÀàÐÍÒ»ÖÂ-->
+        <!--å£°æ˜ŽæœåŠ¡å¼•ç”¨ï¼Œä¸ŽæœåŠ¡å£°æ˜ŽæŽ¥å£ç±»åž‹ä¸€è‡´-->
         <!--<dubbo:reference interface="com.practice.springboot.dubbo.provider.SayHelloImpl" id="SayHelloImpl"/>-->
 </beans>
-

@@ -1,13 +1,11 @@
 package com.jesper.seckill.controller;
-
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.jesper.seckill.dubbo_api.DemoService;
 import com.jesper.seckill.rabbitmq.MQSender;
 import com.jesper.seckill.redis.RedisService;
-import com.jesper.seckill.redis.UserKey;
-import com.jesper.seckill.result.CodeMsg;
 import com.jesper.seckill.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -18,6 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/demo")
 public class DemoController {
 
+	
+	@Reference
+    DemoService demoService;
     @Autowired
     RedisService redisService;
 
@@ -25,12 +26,12 @@ public class DemoController {
     @Autowired
     MQSender sender;
 
-//    @RequestMapping("/mq")
-//    @ResponseBody
-//    public Result<String> mq() {
-//        sender.send("hello,imooc");
-//        return Result.success("Hello，world");
-//    }
+    @RequestMapping("/test")
+    @ResponseBody
+    public Result<String> mq() {
+        demoService.test();
+        return Result.success("Hello，world");
+    }
 
 //    @RequestMapping("/mq/topic")
 //    @ResponseBody
