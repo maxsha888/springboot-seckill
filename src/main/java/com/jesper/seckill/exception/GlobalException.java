@@ -20,5 +20,5 @@ public class GlobalException extends RuntimeException {
 
     public CodeMsg getCodeMsg() {
         return codeMsg;
-    }
+    } 
 }

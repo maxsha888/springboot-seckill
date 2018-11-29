@@ -54,7 +54,7 @@ public class SeckillController implements InitializingBean {
     //做标记，判断该商品是否被处理过了
     private HashMap<Long, Boolean> localOverMap = new HashMap<Long, Boolean>();
 
-    /**
+    /** 
      * GET POST
      * 1、GET幂等,服务端获取数据，无论调用多少次结果都一样
      * 2、POST，向服务端提交数据，不是幂等

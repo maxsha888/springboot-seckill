@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by jiangyunxiong on 2018/5/22.
  */
 @Service
-public class UserArgumentResolver implements HandlerMethodArgumentResolver {
+public class UserArgumentResolver implements HandlerMethodArgumentResolver { 
 
     @Autowired
     UserService userService;

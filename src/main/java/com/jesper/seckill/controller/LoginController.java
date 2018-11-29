@@ -38,6 +38,6 @@ public class LoginController {
         log.info(loginVo.toString());
         String token = userService.login(response, loginVo);
         return Result.success(token);
-    }
+    } 
 
 }

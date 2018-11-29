@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
  */
 public class RateLimiterDemo {
     public static void main(String[] args) {
-        RateLimiter rateLimiter = RateLimiter.create(2);
+        RateLimiter rateLimiter = RateLimiter.create(2);//一秒最多两个请求
         List<Runnable> tasks = new ArrayList<Runnable>();
         for(int i = 0;i < 10; i++){
             tasks.add(new UserRequest(i));

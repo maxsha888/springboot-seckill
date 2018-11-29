@@ -1,6 +1,6 @@
 package com.jesper.seckill.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.jesper.seckill.dubbo_api.DemoService;
+import com.jesper.seckill.api.DemoService;
 import com.jesper.seckill.rabbitmq.MQSender;
 import com.jesper.seckill.redis.RedisService;
 import com.jesper.seckill.result.Result;
