@@ -1,5 +1,6 @@
 package com.jesper.seckill.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.jesper.seckill.annotation.AnnotationType;
 import com.jesper.seckill.api.DemoService;
 import com.jesper.seckill.rabbitmq.MQSender;
 import com.jesper.seckill.redis.RedisService;
@@ -26,6 +27,7 @@ public class DemoController {
     @Autowired
     MQSender sender;
 
+    @AnnotationType(type="session")
     @RequestMapping("/test")
     @ResponseBody
     public Result<String> mq() {
