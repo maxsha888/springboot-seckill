@@ -38,6 +38,9 @@ public class SessionAspect {
     @Before("dataFilterCut()")
     public void sessionCtl(JoinPoint point) {
     		System.out.println("xxxxxx before");
+            point.getSignature();
+            point.getArgs();
+            point.getTarget();
         }
 
 
