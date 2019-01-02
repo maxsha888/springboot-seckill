@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/demo")
 public class DemoController {
 
-	
-	@Reference
+	//若是用dubbo 注解 用 @Reference
+	@Autowired
     DemoService demoService;
     @Autowired
     RedisService redisService;
@@ -32,7 +32,7 @@ public class DemoController {
     @ResponseBody
     public Result<String> mq() {
         demoService.test();
-        return Result.success("Hello，world");
+        return Result.success("Hello，world"); 
     }
 
 //    @RequestMapping("/mq/topic")
