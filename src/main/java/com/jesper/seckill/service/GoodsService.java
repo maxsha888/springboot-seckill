@@ -65,4 +65,13 @@ public class GoodsService {
 
         return ret > 0;
     }
+    
+    /**
+     * 查询所有商品列表  
+     *
+     * @return
+     */
+    public List<GoodsVo> getGoodsList() {
+        return goodsMapper.getGoodsList();
+    }
 }

@@ -29,5 +29,7 @@ public interface GoodsMapper {
     @Select("select version from sk_goods_seckill  where goods_id = #{goodsId}")
     public int getVersionByGoodsId(@Param("goodsId") long goodsId);
 
+    @Select("select * from sk_goods")
+    public List<GoodsVo> getGoodsList();
 
 }

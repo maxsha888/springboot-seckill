@@ -160,4 +160,23 @@ public class GoodsController {
 
         return Result.success(vo);
     }
+    
+    
+    /**
+     * 商品销量排行榜
+     */
+    @RequestMapping(value = "/sellRanking")
+    @ResponseBody
+    public Result<String> sellRanking(HttpServletRequest request, HttpServletResponse response, Model model) {
+
+        //查询全部商品列表
+        List<GoodsVo> goodsList = goodsService.getGoodsList();
+      
+        String sellRanking=redisService.get(GoodsKey.getSellRanking, "", String.class);
+        if(StringUtils.isEmpty(sellRanking)){
+        	  redisService.set(GoodsKey.getSellRanking,"", goodsList);
+        }
+        sellRanking=redisService.get(GoodsKey.getSellRanking, "", String.class);
+        return Result.success(sellRanking);
+    }
 }
