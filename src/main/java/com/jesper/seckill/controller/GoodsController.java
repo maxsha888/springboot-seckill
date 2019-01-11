@@ -7,6 +7,7 @@ import com.jesper.seckill.redis.RedisService;
 import com.jesper.seckill.result.Result;
 import com.jesper.seckill.service.GoodsService;
 import com.jesper.seckill.service.UserService;
+import com.jesper.seckill.util.JedisUtil;
 import com.jesper.seckill.vo.GoodsDetailVo;
 import com.jesper.seckill.vo.GoodsVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -174,9 +175,10 @@ public class GoodsController {
       
         String sellRanking=redisService.get(GoodsKey.getSellRanking, "", String.class);
         if(StringUtils.isEmpty(sellRanking)){
-        	  redisService.set(GoodsKey.getSellRanking,"", goodsList);
+        	  //redisService.set(GoodsKey.getSellRanking,"", goodsList);
+        	  JedisUtil.set("goodsSellRanking", goodsList.toString());
         }
-        sellRanking=redisService.get(GoodsKey.getSellRanking, "", String.class);
+        sellRanking= (String)JedisUtil.get("goodsSellRanking");
         return Result.success(sellRanking);
     }
 }

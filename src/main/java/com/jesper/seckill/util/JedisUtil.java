@@ -29,33 +29,28 @@ public class JedisUtil {
 	    static {
 	        try {
 	            // 加载redis配置文件
-	            ResourceBundle bundle = ResourceBundle.getBundle("redis");
+	            ResourceBundle bundle = ResourceBundle.getBundle("application");
 	            if (bundle == null) {
 	                throw new IllegalArgumentException(
 	                        "[redis.properties] is not found!");
 	            }
-	            int maxActivity = Integer.valueOf(bundle
-	                    .getString("redis.pool.maxActive"));
-	            int maxIdle = Integer.valueOf(bundle
-	                    .getString("redis.pool.maxIdle"));
-	            long maxWait = Long.valueOf(bundle.getString("redis.pool.maxWait"));
-	            boolean testOnBorrow = Boolean.valueOf(bundle
-	                    .getString("redis.pool.testOnBorrow"));
-	            boolean onreturn = Boolean.valueOf(bundle
-	                    .getString("redis.pool.testOnReturn"));
-	            // 创建jedis池配置实例
-	            JedisPoolConfig config = new JedisPoolConfig();
-	            // 设置池配置项值
-	            config.setMaxIdle(maxIdle);  //最大空闲连接数
-	            config.setTestOnBorrow(testOnBorrow);
-	            config.setTestOnReturn(onreturn);
-	            jedisPool = new JedisPool(config, bundle.getString("redis.ip"),
-	                    Integer.valueOf(bundle.getString("redis.port")), 10000,
-	                    bundle.getString("redis.password"));
-	            // slave链接
+				int maxTotal = Integer.valueOf(bundle.getString("redis.poolMaxTotal"));
+				int maxIdle = Integer.valueOf(bundle.getString("redis.poolMaxIdle"));
+				long maxWait = Long.valueOf(bundle.getString("redis.poolMaxWait"));
+				// 创建jedis池配置实例
+				JedisPoolConfig config = new JedisPoolConfig();
+				// 设置池配置项值
+				config.setMaxIdle(maxIdle); // 最大空闲连接数
+				config.setMaxTotal(maxTotal);
+				config.setMaxWaitMillis(maxWait);
+				jedisPool = new JedisPool(config, bundle.getString("redis.host"),
+				Integer.valueOf(bundle.getString("redis.port")), 10000, bundle.getString("redis.password"));
+	            // redis 集群 slave链接
 	            List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
-	            shards.add(new JedisShardInfo(bundle.getString("redis.ip"), Integer
-	                    .valueOf(bundle.getString("redis.port1"))));
+	            JedisShardInfo shardInfo1 = new JedisShardInfo(bundle.getString("redis.host"), Integer.valueOf(bundle.getString("redis.port")));
+	            shardInfo1.setPassword(bundle.getString("redis.password"));
+	            //JedisShardInfo shardInfo2 = new JedisShardInfo(host, 6379, 500);
+	            shards.add(shardInfo1);
 	            shardedJedisPool = new ShardedJedisPool(config, shards);
 	            log.info("初始化Redis连接池success");
 	        } catch (Exception e) {
