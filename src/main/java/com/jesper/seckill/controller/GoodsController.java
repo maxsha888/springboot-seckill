@@ -3,6 +3,7 @@ package com.jesper.seckill.controller;
 import com.alibaba.druid.util.StringUtils;
 import com.jesper.seckill.bean.User;
 import com.jesper.seckill.redis.GoodsKey;
+import com.jesper.seckill.redis.RedisKey;
 import com.jesper.seckill.redis.RedisService;
 import com.jesper.seckill.result.Result;
 import com.jesper.seckill.service.GoodsService;
@@ -23,6 +24,7 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by jiangyunxiong on 2018/5/22.
@@ -163,22 +165,5 @@ public class GoodsController {
     }
     
     
-    /**
-     * 商品销量排行榜
-     */
-    @RequestMapping(value = "/sellRanking")
-    @ResponseBody
-    public Result<String> sellRanking(HttpServletRequest request, HttpServletResponse response, Model model) {
-
-        //查询全部商品列表
-        List<GoodsVo> goodsList = goodsService.getGoodsList();
-      
-        String sellRanking=redisService.get(GoodsKey.getSellRanking, "", String.class);
-        if(StringUtils.isEmpty(sellRanking)){
-        	  //redisService.set(GoodsKey.getSellRanking,"", goodsList);
-        	  JedisUtil.set("goodsSellRanking", goodsList.toString());
-        }
-        sellRanking= (String)JedisUtil.get("goodsSellRanking");
-        return Result.success(sellRanking);
-    }
+        
 }
